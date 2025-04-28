@@ -21,6 +21,7 @@
         <option value="travel">Travel</option>
         <option value="other">Other</option>
       </select>
+      <input type="date" id="expense-date" required>
       <button type="submit">Add Expense</button>
     </form>
     
@@ -29,6 +30,11 @@
       <input type="text" id="filter-name" placeholder="Search by Name">
       <input type="number" id="filter-amount" placeholder="Search by Amount">
       <button id="filter-button">Filter</button>
+    </div>
+
+    <div id="reminders-section">
+      <h2>Upcoming Expenses</h2>
+      <div id="reminders-list"></div>
     </div>
 
     <div id="expense-list"></div>
