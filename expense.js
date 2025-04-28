@@ -2,8 +2,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const expenseForm = document.getElementById("expense-form");
     const expenseList = document.getElementById("expense-list");
     const totalExpense = document.getElementById("total-expense");
+    const themeToggle = document.getElementById("theme-toggle");
   
     let expenses = [];
+  
+    // Load and apply saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+    }
+  
+    // Toggle theme and save preference
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      const isDarkMode = document.body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+    });
   
     // Function to update the total expense
     function updateTotal() {
