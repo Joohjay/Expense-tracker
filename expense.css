@@ -33,10 +33,16 @@
     margin-bottom: 20px;
   }
   
-  form input, form select, form button {
+  form input, form select, form button, #filter-section input, #filter-section button {
     flex: 1;
     padding: 10px;
     font-size: 16px;
+  }
+  
+  #filter-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
   }
   
   #expense-list {

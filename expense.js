@@ -3,8 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const expenseList = document.getElementById("expense-list");
     const totalExpense = document.getElementById("total-expense");
     const themeToggle = document.getElementById("theme-toggle");
+    const filterNameInput = document.getElementById("filter-name");
+    const filterAmountInput = document.getElementById("filter-amount");
+    const filterButton = document.getElementById("filter-button");
   
     let expenses = [];
+    let filteredExpenses = [];
   
     // Load and apply saved theme
     const savedTheme = localStorage.getItem("theme");
@@ -20,15 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
     // Function to update the total expense
-    function updateTotal() {
-      const total = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+    function updateTotal(expensesToCalculate = expenses) {
+      const total = expensesToCalculate.reduce((sum, expense) => sum + expense.amount, 0);
       totalExpense.textContent = total.toFixed(2);
     }
   
     // Function to render the expense list
-    function renderExpenses() {
+    function renderExpenses(expensesToRender = expenses) {
       expenseList.innerHTML = "";
-      expenses.forEach((expense, index) => {
+      expensesToRender.forEach((expense, index) => {
         const expenseItem = document.createElement("div");
         expenseItem.className = "expense-item";
         expenseItem.innerHTML = `
@@ -62,5 +66,21 @@ document.addEventListener("DOMContentLoaded", () => {
         updateTotal();
         renderExpenses();
       }
+    });
+  
+    // Filter expenses based on user input
+    filterButton.addEventListener("click", () => {
+      const filterName = filterNameInput.value.toLowerCase();
+      const filterAmount = parseFloat(filterAmountInput.value);
+  
+      filteredExpenses = expenses.filter((expense) => {
+        const matchesName = filterName ? expense.name.toLowerCase().includes(filterName) : true;
+        const matchesAmount = !isNaN(filterAmount) ? expense.amount === filterAmount : true;
+  
+        return matchesName && matchesAmount;
+      });
+  
+      renderExpenses(filteredExpenses);
+      updateTotal(filteredExpenses);
     });
   });
