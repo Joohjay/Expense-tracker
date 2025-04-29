@@ -15,12 +15,12 @@
   }
   
   .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background: var(--card-background);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      max-width: 800px; /* Increased width from 600px to 800px */
+      margin: 40px auto; /* Adjusted margin for better spacing */
+      background: var(--card-background);
+      padding: 30px; /* Increased padding for more inner spacing */
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for better visual appeal */
   }
   
   h1, h2 {
